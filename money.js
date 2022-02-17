@@ -6,12 +6,12 @@ function getInputValue(inputId) {
 }
 
 // Total Spending value
-function getTotalSpendings() {
+function getTotalMineExpenses() {
   const foodCost = getInputValue("#input-food");
   const rentCost = getInputValue("#input-rent");
   const clotheCost = getInputValue("#input-clothe");
-  const totalSpendingsField = document.getElementById("total-spendings");
-  const totalSpending = foodCost + rentCost + clotheCost;
+  const totalMineExpensesField = document.getElementById("total-expenses");
+  const totalExpenses = foodCost + rentCost + clotheCost;
   if (
     isNaN(foodCost) ||
     isNaN(rentCost) ||
@@ -21,31 +21,31 @@ function getTotalSpendings() {
     clotheCost < 0
   ) {
     alert("Please Enter a valid input");
-    totalSpendingsField.innerText = "";
+    totalMineExpensesField.innerText = "";
   } else {
-    return totalSpending;
+    return totalExpenses;
   }
 }
 
 document.getElementById("calculation-btn").addEventListener("click", () => {
   const totalIncome = getInputValue("#input-income");
-  const totalSpending = getTotalSpendings();
+  const totalExpenses = getTotalMineExpenses();
   //Error Handling
   if (totalIncome <= 0) {
     alert("Please enter a valid amount");
-  } else if (isNaN(totalIncome) || totalSpending == undefined) {
+  } else if (isNaN(totalIncome) || totalExpenses == undefined) {
     alert("Please enter a valid amount");
-  } else if (totalIncome < totalSpending) {
+  } else if (totalIncome < totalExpenses) {
     alert("You can't spend more than you Earn");
   } else {
-    if (typeof totalSpending !== "number") {
+    if (typeof totalExpenses !== "number") {
     } else {
-      //Update total spending
-      const totalSpendingsField = document.getElementById("total-spendings");
-      totalSpendingsField.innerText = totalSpending;
+      //Update total spending expenses
+      const totalMineExpensesField = document.getElementById("total-expenses");
+      totalMineExpensesField.innerText = totalExpenses;
 
       //Update New balance
-      const newBalance = totalIncome - totalSpending;
+      const newBalance = totalIncome - totalExpenses;
       const newBalanceField = document.getElementById("new-balance");
       newBalanceField.innerText = newBalance;
     }
@@ -57,8 +57,8 @@ document.getElementById("savings-btn").addEventListener("click", () => {
   const newBalanceField = document.getElementById("new-balance");
   const newBalance = parseInt(newBalanceField.innerText);
   const totalIncome = getInputValue("#input-income");
-  const totalSpendingsField = document.getElementById("total-spendings");
-  const totalSpending = parseInt(totalSpendingsField.innerText);
+  const totalMineExpensesField = document.getElementById("total-expenses");
+  const totalExpenses = parseInt(totalMineExpensesField.innerText);
 
   // savings
   const savingParcent = getInputValue("#parcent");
@@ -72,11 +72,7 @@ document.getElementById("savings-btn").addEventListener("click", () => {
     alert("Please enter a valid input");
   } else if (totalIncome < savingAmount) {
     alert("Input number is not valid");
-  } else if (
-    isNaN(totalIncome) ||
-    isNaN(savingParcent) ||
-    isNaN(totalSpending)
-  ) {
+  } else if (isNaN(totalIncome) || isNaN(savingParcent) || isNaN(totalExpenses)) {
     alert("Please fill the above field");
   } else if (ultimateAmmount < 0) {
     alert("Input number is not valid");
