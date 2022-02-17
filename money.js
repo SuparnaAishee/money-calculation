@@ -30,7 +30,6 @@ function getTotalSpendings() {
 document.getElementById("calculation-btn").addEventListener("click", () => {
   const totalIncome = getInputValue("#input-income");
   const totalSpending = getTotalSpendings();
-
   //Error Handling
   if (totalIncome <= 0) {
     alert("Please enter a valid amount");
@@ -50,5 +49,41 @@ document.getElementById("calculation-btn").addEventListener("click", () => {
       const newBalanceField = document.getElementById("new-balance");
       newBalanceField.innerText = newBalance;
     }
+  }
+});
+
+document.getElementById("savings-btn").addEventListener("click", () => {
+  //New Balance
+  const newBalanceField = document.getElementById("new-balance");
+  const newBalance = parseInt(newBalanceField.innerText);
+  const totalIncome = getInputValue("#input-income");
+  const totalSpendingsField = document.getElementById("total-spendings");
+  const totalSpending = parseInt(totalSpendingsField.innerText);
+
+  // savings
+  const savingParcent = getInputValue("#parcent");
+  const savingAmount = totalIncome * (savingParcent / 100);
+
+  // ultimate Ammount
+  const ultimateAmmount = newBalance - savingAmount;
+
+  //Error handling for Savings
+  if (savingParcent < 0) {
+    alert("Please enter a valid input");
+  } else if (totalIncome < savingAmount) {
+    alert("Input number is not valid");
+  } else if (
+    isNaN(totalIncome) ||
+    isNaN(savingParcent) ||
+    isNaN(totalSpending)
+  ) {
+    alert("Please fill the above field");
+  } else if (ultimateAmmount < 0) {
+    alert("Input number is not valid");
+  } else {
+    const savingField = document.getElementById("total-savings");
+    savingField.innerText = savingAmount;
+    const ultimateAmmountField = document.getElementById("ultimate-ammount");
+    ultimateAmmountField.innerText = ultimateAmmount;
   }
 });
