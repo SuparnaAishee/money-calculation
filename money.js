@@ -30,3 +30,25 @@ function getTotalSpendings() {
 document.getElementById("calculation-btn").addEventListener("click", () => {
   const totalIncome = getInputValue("#input-income");
   const totalSpending = getTotalSpendings();
+
+  //Error Handling
+  if (totalIncome <= 0) {
+    alert("Please enter a valid amount");
+  } else if (isNaN(totalIncome) || totalSpending == undefined) {
+    alert("Please enter a valid amount");
+  } else if (totalIncome < totalSpending) {
+    alert("You can't spend more than you Earn");
+  } else {
+    if (typeof totalSpending !== "number") {
+    } else {
+      //Update total spending
+      const totalSpendingsField = document.getElementById("total-spendings");
+      totalSpendingsField.innerText = totalSpending;
+
+      //Update New balance
+      const newBalance = totalIncome - totalSpending;
+      const newBalanceField = document.getElementById("new-balance");
+      newBalanceField.innerText = newBalance;
+    }
+  }
+});
