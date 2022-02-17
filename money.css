@@ -13,3 +13,11 @@
 .box{
     padding-right:5% ;
 }
+#calculation-btn{
+    background-color: rgb(14, 110, 235);
+    color: white;
+}
+#savings-btn{
+    background-color: rgb(14, 110, 235);
+    color: white;
+}
